@@ -1,2 +1,2 @@
-# stepper-react-bootstrap
-A react bootstrap based stepper
+# stepper-bootstrap
+A react bootstrap based stepper component.
