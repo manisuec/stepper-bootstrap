@@ -1,65 +1,71 @@
 {
-  "name": "stepper-react-bootstrap",
-  "version": "0.0.1",
-  "description": "A react bootstrap based stepper",
-  "main": "build/index.js",
-  "module": "build/index.es.js",
-  "files": [
-    "build"
-  ],
+  "name": "stepper-bootstrap",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "build": "rollup -c",
-    "start": "rollup -c -w",
-    "storybook": "start-storybook -p 2512",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "react-scripts test",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public",
+    "build": "rollup -c"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/manisuec/stepper-react-bootstrap.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
   },
-  "keywords": [
-    "stepper",
-    "react",
-    "bootstrap"
-  ],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/manisuec/stepper-react-bootstrap/issues"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
-  "homepage": "https://github.com/manisuec/stepper-react-bootstrap#readme",
   "devDependencies": {
-    "@babel/core": "^7.10.3",
-    "@rollup/plugin-commonjs": "^11.1.0",
-    "@rollup/plugin-node-resolve": "^7.1.3",
-    "@storybook/react": "^5.3.19",
-    "@testing-library/jest-dom": "^5.10.1",
-    "@testing-library/react": "^10.4.2",
-    "@types/jest": "^26.0.3",
-    "@types/react": "^16.9.41",
-    "@types/react-dom": "^16.9.8",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.1.0",
-    "babel-preset-react-app": "^9.1.2",
-    "babel-runtime": "^6.26.0",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^26.1.0",
-    "node-sass": "^4.14.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "rollup": "^2.18.0",
-    "rollup-plugin-livereload": "^1.3.0",
-    "rollup-plugin-peer-deps-external": "^2.2.2",
-    "rollup-plugin-postcss": "^3.1.2",
-    "rollup-plugin-serve": "^1.0.1",
-    "rollup-plugin-typescript2": "^0.27.1",
-    "sass-loader": "^8.0.2",
-    "ts-jest": "^26.1.1",
-    "typescript": "^3.9.5"
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-typescript": "^8.2.1",
+    "@storybook/addon-actions": "^6.3.2",
+    "@storybook/addon-essentials": "^6.3.2",
+    "@storybook/addon-links": "^6.3.2",
+    "@storybook/core": "^6.3.2",
+    "@storybook/node-logger": "^6.3.2",
+    "@storybook/preset-create-react-app": "^3.1.7",
+    "@storybook/react": "^6.3.2",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.1.9",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^16.0.0",
+    "@types/react": "^17.0.13",
+    "@types/react-dom": "^17.0.8",
+    "postcss": "^8.3.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.0",
+    "rollup-plugin-terser": "^5.3.1",
+    "typescript": "^4.3.5",
+    "web-vitals": "^2.1.0"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }
