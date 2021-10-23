@@ -107,3 +107,6 @@ dist
 
 
 storybook-static/
+
+# vscode
+.vscode/
