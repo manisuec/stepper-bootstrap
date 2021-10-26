@@ -1,6 +1,8 @@
 import { Children, useState, useEffect, forwardRef, cloneElement } from 'react';
 import clsx from 'clsx';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
+
+import '../assets/sass/main.scss';
 
 const Stepper = forwardRef(function Stepper(props, ref){
   const {
@@ -58,7 +60,7 @@ const Stepper = forwardRef(function Stepper(props, ref){
         {
           curIndex > 0 ? (
             <span onClick={previousHandler(curIndex)}>
-              <i class="bi bi-arrow-left"></i>
+              <i className="bi bi-arrow-left"></i>
             </span>
           ) : ('')
         }
@@ -71,9 +73,10 @@ const Stepper = forwardRef(function Stepper(props, ref){
       <Card.Footer className="text-right">
         {
           curIndex !== childrenArray.length - 1 ? (
-            <span className="d-flex align-items-center" onClick={nextHandler(curIndex)}>
-              <i class="bi bi-arrow-right"></i>
-            </span>
+            <Button variant="outline-primary" onClick={nextHandler(curIndex)}>{'Next'}</Button>
+            // <span className="d-flex align-items-center" onClick={nextHandler(curIndex)}>
+            //   <i class="bi bi-arrow-right"></i>
+            // </span>
           ) : ('')
         }
       </Card.Footer>

@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Stepper from '../../Stepper/Stepper';
@@ -19,15 +18,12 @@ const Step3 = () => (
 const steps = [
   {
     stepHeader: 'Basic Details',
-    nextLabel: 'Financial details',
   },
   {
     stepHeader: 'Basic Details',
-    nextLabel: 'Financial details',
   },
   {
     stepHeader: 'Basic Details',
-    nextLabel: 'Financial details',
   },
 ];
 
@@ -37,7 +33,7 @@ const getStep = (index, formObj) => {
       return (
         <Step1
           key={index}
-          stepHeader={'Basic Details'}
+          stepHeader={'First Header'}
           bodyComponent={formObj}
         />
       );
@@ -45,7 +41,7 @@ const getStep = (index, formObj) => {
       return (
         <Step2
           key={index}
-          stepHeader={'Financial details'}
+          stepHeader={'Second Header'}
           bodyComponent={formObj}
         />
       );
@@ -53,7 +49,7 @@ const getStep = (index, formObj) => {
       return (
         <Step3
           key={index}
-          stepHeader={'Upload proofs'}
+          stepHeader={'Third Header'}
           bodyComponent={formObj}
         />
       );
@@ -67,17 +63,17 @@ const formObj = <div>Test form</div>;
 
 storiesOf('Stepper', Stepper)
   .add('activeStep = 0', () => (
-    <Stepper activeStep={activeStep} stepperLabel={'Add Vendor'}>
+    <Stepper activeStep={activeStep} stepperLabel={'Stepper'}>
       {steps.map((step, index) => getStep(index, formObj))}
     </Stepper>
   ))
   .add('activeStep = 1', () => (
-    <Stepper activeStep={1} stepperLabel={'Add Vendor'}>
+    <Stepper activeStep={1} stepperLabel={'Stepper'}>
       {steps.map((step, index) => getStep(index, formObj))}
     </Stepper>
   ))
   .add('activeStep = 2, React component', () => (
-    <Stepper activeStep={2} stepperLabel={'Add Vendor'}>
+    <Stepper activeStep={2} stepperLabel={'Stepper'}>
       {steps.map((step, index) => getStep(index, formObj))}
     </Stepper>
   ));
