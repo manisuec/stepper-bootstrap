@@ -8,9 +8,7 @@ const Stepper = forwardRef(function Stepper(props, ref){
   const {
     activeStep = 0,
     children,
-    stepperLabel,
     className,
-    setPrevStep,
     onHide,
     ...restProps
   } = props;
@@ -38,11 +36,7 @@ const Stepper = forwardRef(function Stepper(props, ref){
   const previousHandler = index => e => {
     e.preventDefault();
     if (index > 0) {
-      if (setPrevStep) {
-        setPrevStep(--curIndex);
-      } else {
-        setCurIndex(--curIndex);
-      }
+      setCurIndex(--curIndex);
     }
   };
 
@@ -57,28 +51,29 @@ const Stepper = forwardRef(function Stepper(props, ref){
     <Card className={classes}>
       <Card.Header>
       <div className="stepper-header">
-        {
-          curIndex > 0 ? (
-            <span onClick={previousHandler(curIndex)}>
-              <i className="bi bi-arrow-left"></i>
-            </span>
-          ) : ('')
-        }
-        {`${stepperLabel} | ${stepHeader} | ${curIndex + 1}/${childrenArray.length}`}
+        {`${stepHeader} | ${curIndex + 1}/${childrenArray.length}`}
       </div>
       </Card.Header>
-      <Card.Body ref={ref} {...restProps} className="py-0">
+      <Card.Body ref={ref} {...restProps} className="container-md py-0">
         {bodyComponent}
       </Card.Body>
       <Card.Footer className="text-right">
-        {
-          curIndex !== childrenArray.length - 1 ? (
-            <Button variant="outline-primary" onClick={nextHandler(curIndex)}>{'Next'}</Button>
-            // <span className="d-flex align-items-center" onClick={nextHandler(curIndex)}>
-            //   <i class="bi bi-arrow-right"></i>
-            // </span>
-          ) : ('')
-        }
+        <div className="d-flex justify-content-between">
+          <Button 
+            variant="outline-primary" 
+            size="sm" 
+            onClick={previousHandler(curIndex)} 
+            disabled={curIndex === 0}>
+              {'Previous'}
+          </Button>
+          <Button 
+            variant="outline-primary" 
+            size="sm" 
+            onClick={nextHandler(curIndex)} 
+            disabled={curIndex === childrenArray.length - 1}>
+              {'Next'}
+          </Button>
+        </div>
       </Card.Footer>
     </Card>
   );

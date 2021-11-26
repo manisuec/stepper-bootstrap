@@ -63,17 +63,17 @@ const formObj = <div>Test form</div>;
 
 storiesOf('Stepper', Stepper)
   .add('activeStep = 0', () => (
-    <Stepper activeStep={activeStep} stepperLabel={'Stepper'}>
+    <Stepper activeStep={activeStep}>
       {steps.map((step, index) => getStep(index, formObj))}
     </Stepper>
   ))
   .add('activeStep = 1', () => (
-    <Stepper activeStep={1} stepperLabel={'Stepper'}>
+    <Stepper activeStep={1}>
       {steps.map((step, index) => getStep(index, formObj))}
     </Stepper>
   ))
   .add('activeStep = 2, React component', () => (
-    <Stepper activeStep={2} stepperLabel={'Stepper'}>
+    <Stepper activeStep={2}>
       {steps.map((step, index) => getStep(index, formObj))}
     </Stepper>
   ));
