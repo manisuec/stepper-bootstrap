@@ -1,19 +1,26 @@
-import { Children, useState, useEffect, forwardRef, cloneElement } from 'react';
+import { Children, useState, useEffect, forwardRef, cloneElement, isValidElement } from 'react';
 import clsx from 'clsx';
 import { Card, Button } from 'react-bootstrap';
 
 import '../assets/sass/main.scss';
 
+const StepperHeader = ({stepHeader, curIndex, totalSteps}) => {
+  return isValidElement(stepHeader) ? stepHeader :
+  (<div>
+    {`${stepHeader} | ${curIndex + 1}/${totalSteps}`}
+  </div>)
+}
+
 const Stepper = forwardRef(function Stepper(props, ref){
   const {
     activeStep = 0,
     children,
-    className,
     onHide,
+    className: stepperClassName,
     ...restProps
   } = props;
 
-  const classes = clsx(className);
+  const stepperClasses = clsx(stepperClassName, 'p-0 mw-400');
   let [curIndex, setCurIndex] = useState(activeStep);
   const childrenArray = Children.toArray(children).filter(Boolean);
 
@@ -27,7 +34,10 @@ const Stepper = forwardRef(function Stepper(props, ref){
   const {
     stepHeader,
     bodyComponent,
+    className: stepClassName,
   } = steps[curIndex].props;
+
+  const stepClasses = clsx(stepClassName, 'py-2 mh-100');
 
   useEffect(() => {
     setCurIndex(activeStep);
@@ -48,13 +58,11 @@ const Stepper = forwardRef(function Stepper(props, ref){
   };
 
   return (
-    <Card className={classes}>
+    <Card className={stepperClasses}>
       <Card.Header>
-      <div className="stepper-header">
-        {`${stepHeader} | ${curIndex + 1}/${childrenArray.length}`}
-      </div>
+        {<StepperHeader stepHeader={stepHeader} curIndex={curIndex} totalSteps={childrenArray.length} />}
       </Card.Header>
-      <Card.Body ref={ref} {...restProps} className="container-md py-0">
+      <Card.Body ref={ref} {...restProps} className={stepClasses}>
         {bodyComponent}
       </Card.Body>
       <Card.Footer className="text-right">

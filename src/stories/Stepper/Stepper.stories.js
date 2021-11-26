@@ -1,56 +1,77 @@
-import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Stepper from '../../Stepper/Stepper';
 
-const Step1 = () => {
-  return <span className="text-muted">{'Step 1: React component'}</span>;
-};
-
-const Step2 = () => (
-  <span className="text-muted">{'Step 2: React component'}</span>
-);
-
-const Step3 = () => (
-  <span className="text-muted">{'Step 3: React component'}</span>
-);
-
-// [{stepName: 'step0', stepLabel: '', handleSubmit: '', completed: true}]
 const steps = [
   {
-    stepHeader: 'Basic Details',
+    name: 'First Header',
   },
   {
-    stepHeader: 'Basic Details',
+    name: 'Second Header',
   },
   {
-    stepHeader: 'Basic Details',
+    name: 'Third Header',
   },
 ];
 
-const getStep = (index, formObj) => {
+const getStep = (index, step, stepObj) => {
+  const headerLabel = `${step.name}`;
+
   switch (index) {
     case 0:
       return (
-        <Step1
+        <div
           key={index}
-          stepHeader={'First Header'}
-          bodyComponent={formObj}
+          stepHeader={headerLabel}
+          bodyComponent={stepObj}
         />
       );
     case 1:
       return (
-        <Step2
+        <div
           key={index}
-          stepHeader={'Second Header'}
-          bodyComponent={formObj}
+          stepHeader={headerLabel}
+          bodyComponent={stepObj}
         />
       );
     case 2:
       return (
-        <Step3
+        <div
           key={index}
-          stepHeader={'Third Header'}
-          bodyComponent={formObj}
+          stepHeader={headerLabel}
+          bodyComponent={stepObj}
+        />
+      );
+    default:
+      return null;
+  }
+};
+
+const getStepWithCustomHeader = (index, step, stepObj) => {
+  const header = <div className="text-uppercase text-primary">{`Custom Header ${index + 1}`}</div>;
+
+  switch (index) {
+    case 0:
+      return (
+        <div
+          key={index}
+          stepHeader={header}
+          bodyComponent={stepObj}
+        />
+      );
+    case 1:
+      return (
+        <div
+          key={index}
+          stepHeader={header}
+          bodyComponent={stepObj}
+        />
+      );
+    case 2:
+      return (
+        <div
+          key={index}
+          stepHeader={header}
+          bodyComponent={stepObj}
         />
       );
     default:
@@ -59,21 +80,25 @@ const getStep = (index, formObj) => {
 };
 
 let activeStep = 0;
-const formObj = <div>Test form</div>;
+const stepObj = (stepNo) => <div>{`Step ${stepNo} body`}</div>;
 
 storiesOf('Stepper', Stepper)
-  .add('activeStep = 0', () => (
+  .add('with activeStep = 0', () => (
     <Stepper activeStep={activeStep}>
-      {steps.map((step, index) => getStep(index, formObj))}
+      {steps.map((step, index) => getStep(index, step, stepObj(index + 1)))}
     </Stepper>
   ))
-  .add('activeStep = 1', () => (
-    <Stepper activeStep={1}>
-      {steps.map((step, index) => getStep(index, formObj))}
+  .add('with activeStep = 1', () => (
+    <Stepper activeStep={activeStep + 1}>
+      {steps.map((step, index) => getStep(index, step, stepObj(index + 1)))}
     </Stepper>
   ))
-  .add('activeStep = 2, React component', () => (
-    <Stepper activeStep={2}>
-      {steps.map((step, index) => getStep(index, formObj))}
+  .add('with activeStep = 2', () => (
+    <Stepper activeStep={activeStep + 2}>
+      {steps.map((step, index) => getStep(index, step, stepObj(index + 1)))}
+    </Stepper>
+  )).add('with custom header', () => (
+    <Stepper activeStep={activeStep}>
+      {steps.map((step, index) => getStepWithCustomHeader(index, step, stepObj(index + 1)))}
     </Stepper>
   ));
