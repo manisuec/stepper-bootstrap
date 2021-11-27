@@ -1,15 +1,7 @@
 @import "bootstrap/scss/bootstrap";
 
-.test-component {
-  padding: 16px;
-  width: 360px;
-  text-align: center;
-}
-
-.mh-100 {
-  min-height: 12.5rem;
-}
-
-.mw-400 {
-  max-width: 25rem;
+.stepper-container {
+  min-height: 6.25rem;
+  min-width: 25rem;
+  padding: 0;
 }

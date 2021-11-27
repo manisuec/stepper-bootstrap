@@ -12,10 +12,12 @@ const StepperHeader = ({stepHeader, curIndex, totalSteps}) => {
     return stepHeader;
   } else {
     return (
-      <div className="d-flex flex-row-reverse justify-content-between">
-        <div>{`${curIndex + 1}/${totalSteps}`}</div>
-        {stepHeader ? <div>{stepHeader}</div> : null}
-      </div>
+      <Card.Header>
+        <div className="d-flex flex-row-reverse justify-content-between">
+          <div>{`${curIndex + 1}/${totalSteps}`}</div>
+          {stepHeader ? <div>{stepHeader}</div> : null}
+        </div>
+      </Card.Header>
     );
   }
 }
@@ -29,7 +31,7 @@ const Stepper = forwardRef(function Stepper(props, ref){
     ...restProps
   } = props;
 
-  const stepperClasses = clsx(stepperClassName, 'p-0 mw-400');
+  const stepperClasses = clsx(stepperClassName, 'stepper-container');
   let [curIndex, setCurIndex] = useState(activeStep);
   const childrenArray = Children.toArray(children).filter(Boolean);
   const { activeStepIndex, setActiveStepIndex } = useStepIndex();
@@ -72,9 +74,7 @@ const Stepper = forwardRef(function Stepper(props, ref){
   return (
     <StepperContext.Provider value={{ activeStepIndex, setActiveStepIndex }}>
       <Card className={stepperClasses}>
-        <Card.Header>
-          {<StepperHeader stepHeader={stepHeader} curIndex={curIndex} totalSteps={childrenArray.length} />}
-        </Card.Header>
+        {<StepperHeader stepHeader={stepHeader} curIndex={curIndex} totalSteps={childrenArray.length} />}
         <Card.Body ref={ref} {...restProps} className={stepClasses}>
           {stepChildren}
         </Card.Body>
