@@ -1,6 +1,6 @@
 import Stepper from "./Stepper/Stepper";
 
-export * from "./Stepper/Step";
+export { default as Step } from "./Stepper/Step";
 export * from "./Stepper/StepperContext";
 
 export default Stepper;
