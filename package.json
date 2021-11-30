@@ -1,6 +1,6 @@
 {
   "name": "stepper-bootstrap",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "keywords": [
@@ -14,6 +14,10 @@
     "url": "https://github.com/manisuec/stepper-bootstrap/issues"
   },
   "homepage": "https://github.com/manisuec/stepper-bootstrap#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manisuec/stepper-bootstrap.git"
+  },
   "files": [
     "build"
   ],
