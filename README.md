@@ -32,6 +32,10 @@ A Stepper component lib using React Bootstrap.
 
 Check the examples provided
 
+or 
+
+[Stepper Bootstrap](https://manisuec.github.io/stepper-bootstrap/)
+
 ## Getting involved
 
 General instructions on _how_ to contribute should be stated with a link to [CONTRIBUTING](CONTRIBUTING.md).
