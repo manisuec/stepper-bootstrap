@@ -1,23 +1,45 @@
-import { Children, useState, useEffect, forwardRef, cloneElement } from 'react';
+import {
+  Children,
+  useState,
+  forwardRef,
+  cloneElement,
+  isValidElement,
+} from 'react';
 import clsx from 'clsx';
 import { Card, Button } from 'react-bootstrap';
 
+import { StepperContext } from './StepperContext';
+import useStepIndex from './useStepIndex';
+
 import '../assets/sass/main.scss';
 
-const Stepper = forwardRef(function Stepper(props, ref){
+const StepperHeader = ({ stepHeader, curIndex, totalSteps }) => {
+  if (isValidElement(stepHeader)) {
+    return stepHeader;
+  } else {
+    return (
+      <Card.Header>
+        <div className="d-flex flex-row-reverse justify-content-between">
+          <div>{`${curIndex + 1}/${totalSteps}`}</div>
+          {stepHeader ? <div>{stepHeader}</div> : null}
+        </div>
+      </Card.Header>
+    );
+  }
+};
+
+const Stepper = forwardRef(function Stepper(props, ref) {
   const {
     activeStep = 0,
     children,
-    stepperLabel,
-    className,
-    setPrevStep,
-    onHide,
+    className: stepperClassName,
     ...restProps
   } = props;
 
-  const classes = clsx(className);
+  const stepperClasses = clsx(stepperClassName, 'stepper-container');
   let [curIndex, setCurIndex] = useState(activeStep);
   const childrenArray = Children.toArray(children).filter(Boolean);
+  const { activeStepIndex, setActiveStepIndex } = useStepIndex();
 
   const steps = childrenArray.map((step, index) => {
     return cloneElement(step, {
@@ -28,59 +50,67 @@ const Stepper = forwardRef(function Stepper(props, ref){
   });
   const {
     stepHeader,
-    bodyComponent,
+    children: stepChildren,
+    className: stepClassName,
   } = steps[curIndex].props;
 
-  useEffect(() => {
-    setCurIndex(activeStep);
-  }, [activeStep]);
+  const stepClasses = clsx(stepClassName, 'py-2 mh-100');
 
   const previousHandler = index => e => {
     e.preventDefault();
     if (index > 0) {
-      if (setPrevStep) {
-        setPrevStep(--curIndex);
-      } else {
-        setCurIndex(--curIndex);
-      }
+      const tempCurIndex = curIndex - 1;
+
+      setCurIndex(tempCurIndex);
+      setActiveStepIndex(tempCurIndex);
     }
   };
 
   const nextHandler = index => e => {
     e.preventDefault();
     if (index !== childrenArray.length - 1) {
-      setCurIndex(++curIndex);
+      const tempCurIndex = curIndex + 1;
+
+      setCurIndex(tempCurIndex);
+      setActiveStepIndex(tempCurIndex);
     }
   };
 
   return (
-    <Card className={classes}>
-      <Card.Header>
-      <div className="stepper-header">
+    <StepperContext.Provider value={{ activeStepIndex, setActiveStepIndex }}>
+      <Card className={stepperClasses}>
         {
-          curIndex > 0 ? (
-            <span onClick={previousHandler(curIndex)}>
-              <i className="bi bi-arrow-left"></i>
-            </span>
-          ) : ('')
+          <StepperHeader
+            stepHeader={stepHeader}
+            curIndex={curIndex}
+            totalSteps={childrenArray.length}
+          />
         }
-        {`${stepperLabel} | ${stepHeader} | ${curIndex + 1}/${childrenArray.length}`}
-      </div>
-      </Card.Header>
-      <Card.Body ref={ref} {...restProps} className="py-0">
-        {bodyComponent}
-      </Card.Body>
-      <Card.Footer className="text-right">
-        {
-          curIndex !== childrenArray.length - 1 ? (
-            <Button variant="outline-primary" onClick={nextHandler(curIndex)}>{'Next'}</Button>
-            // <span className="d-flex align-items-center" onClick={nextHandler(curIndex)}>
-            //   <i class="bi bi-arrow-right"></i>
-            // </span>
-          ) : ('')
-        }
-      </Card.Footer>
-    </Card>
+        <Card.Body ref={ref} {...restProps} className={stepClasses}>
+          {stepChildren}
+        </Card.Body>
+        <Card.Footer className="text-right">
+          <div className="d-flex justify-content-between">
+            <Button
+              variant="outline-primary"
+              size="sm"
+              onClick={previousHandler(curIndex)}
+              disabled={curIndex === 0}
+            >
+              {'Previous'}
+            </Button>
+            <Button
+              variant="outline-primary"
+              size="sm"
+              onClick={nextHandler(curIndex)}
+              disabled={curIndex === childrenArray.length - 1}
+            >
+              {'Next'}
+            </Button>
+          </div>
+        </Card.Footer>
+      </Card>
+    </StepperContext.Provider>
   );
 });
 

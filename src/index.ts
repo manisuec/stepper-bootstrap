@@ -1,3 +1,6 @@
-export * from "./stories/Button"
-export * from "./stories/Header"
-export * from "./stories/Page"
+import Stepper from "./Stepper/Stepper";
+
+export { default as Step } from "./Stepper/Step";
+export * from "./Stepper/StepperContext";
+
+export default Stepper;
