@@ -13,11 +13,11 @@
   "bugs": {
     "url": "https://github.com/manisuec/stepper-bootstrap/issues"
   },
-  "homepage": "https://github.com/manisuec/stepper-bootstrap#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/manisuec/stepper-bootstrap.git"
   },
+  "homepage": "https://manisuec.github.io/stepper-bootstrap/",
   "files": [
     "build"
   ],
@@ -28,7 +28,9 @@
     "build": "rollup -c",
     "lint:fix": "./node_modules/.bin/eslint --fix src/**/*.js",
     "prettier:write": "./node_modules/.bin/prettier --config .prettierrc --write 'src/**/*.js'",
-    "prettier:check": "./node_modules/.bin/prettier --config .prettierrc --check 'src/**/*.js'"
+    "prettier:check": "./node_modules/.bin/prettier --config .prettierrc --check 'src/**/*.js'",
+    "predeploy": "npm run build-storybook",
+    "deploy-storybook": "gh-pages -d storybook-static"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -93,6 +95,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.1",
+    "gh-pages": "^3.2.3",
     "husky": "^7.0.4",
     "identity-obj-proxy": "^3.0.0",
     "immer": ">=9.0.6",
