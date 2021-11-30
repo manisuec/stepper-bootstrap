@@ -1,8 +1,13 @@
 {
   "name": "stepper-bootstrap",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
+  "keywords": [
+    "stepper",
+    "bootstrap",
+    "react"
+  ],
   "author": "Manish Prasad",
   "license": "MIT",
   "bugs": {
