@@ -4,14 +4,14 @@ import {
   forwardRef,
   cloneElement,
   isValidElement,
-} from 'react';
-import clsx from 'clsx';
-import { Card, Button } from 'react-bootstrap';
+} from "react";
+import clsx from "clsx";
+import { Card, Button } from "react-bootstrap";
 
-import { StepperContext } from './StepperContext';
-import useStepIndex from './useStepIndex';
+import { StepperContext } from "./StepperContext";
+import useStepIndex from "./useStepIndex";
 
-import '../assets/sass/main.scss';
+import "../assets/sass/main.scss";
 
 const StepperHeader = ({ stepHeader, curIndex, totalSteps }) => {
   if (isValidElement(stepHeader)) {
@@ -32,12 +32,11 @@ const Stepper = forwardRef(function Stepper(props, ref) {
   const {
     activeStep = 0,
     children,
-    onHide,
     className: stepperClassName,
     ...restProps
   } = props;
 
-  const stepperClasses = clsx(stepperClassName, 'stepper-container');
+  const stepperClasses = clsx(stepperClassName, "stepper-container");
   let [curIndex, setCurIndex] = useState(activeStep);
   const childrenArray = Children.toArray(children).filter(Boolean);
   const { activeStepIndex, setActiveStepIndex } = useStepIndex();
@@ -55,9 +54,9 @@ const Stepper = forwardRef(function Stepper(props, ref) {
     className: stepClassName,
   } = steps[curIndex].props;
 
-  const stepClasses = clsx(stepClassName, 'py-2 mh-100');
+  const stepClasses = clsx(stepClassName, "py-2 mh-100");
 
-  const previousHandler = index => e => {
+  const previousHandler = (index) => (e) => {
     e.preventDefault();
     if (index > 0) {
       const tempCurIndex = curIndex - 1;
@@ -67,7 +66,7 @@ const Stepper = forwardRef(function Stepper(props, ref) {
     }
   };
 
-  const nextHandler = index => e => {
+  const nextHandler = (index) => (e) => {
     e.preventDefault();
     if (index !== childrenArray.length - 1) {
       const tempCurIndex = curIndex + 1;
@@ -98,7 +97,7 @@ const Stepper = forwardRef(function Stepper(props, ref) {
               onClick={previousHandler(curIndex)}
               disabled={curIndex === 0}
             >
-              {'Previous'}
+              {"Previous"}
             </Button>
             <Button
               variant="outline-primary"
@@ -106,7 +105,7 @@ const Stepper = forwardRef(function Stepper(props, ref) {
               onClick={nextHandler(curIndex)}
               disabled={curIndex === childrenArray.length - 1}
             >
-              {'Next'}
+              {"Next"}
             </Button>
           </div>
         </Card.Footer>
