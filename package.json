@@ -12,12 +12,12 @@
     "build-storybook": "build-storybook",
     "build": "rollup -c",
     "lint:fix": "./node_modules/.bin/eslint --fix src/**/*.js",
-    "prettier:write": "prettier --write 'src/**/*.js'",
-    "prettier:check": "prettier --check 'src/**/*.js'"
+    "prettier:write": "./node_modules/.bin/prettier --config .prettierrc --write 'src/**/*.js'",
+    "prettier:check": "./node_modules/.bin/prettier --config .prettierrc --check 'src/**/*.js'"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
+      "./node_modules/.bin/prettier --write",
       "./node_modules/.bin/eslint --fix"
     ]
   },

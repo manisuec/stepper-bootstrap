@@ -21,22 +21,23 @@
     "JSX": true
   },
   "extends": [
-    "eslint:recommended",
     "prettier",
     "plugin:prettier/recommended",
     "plugin:react/recommended"
   ],
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "prettier"
   ],
   "rules": {
+    "prettier/prettier": "error",
     "arrow-parens": ["error", "as-needed"],
     "no-console": "error",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": [
       "error"
     ],
-    "react/prop-types": "error",
+    "react/prop-types": "off",
     "eqeqeq":"error",
     "no-trailing-spaces": "warn",
     "failOnError": 0,

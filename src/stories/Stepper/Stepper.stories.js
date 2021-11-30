@@ -108,7 +108,7 @@ const getStepWithCustomHeader = index => {
 const getStepWithStepperContext = index => {
   return (
     <Step key={index} stepHeader={<StepperContextExample />}>
-      <div>{`Using StepperContext active index value can be fetched`}</div>
+      <div>{'Using StepperContext active index value can be fetched'}</div>
     </Step>
   );
 };
