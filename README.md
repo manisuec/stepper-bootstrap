@@ -1,8 +1,12 @@
 # Stepper Bootstrap
 
-**Description**:
-
 A Stepper component lib using React Bootstrap.
+
+[![NPM][npm-img]][npm-url]
+
+[![contributions welcome][contribution-img]][contribution-url]
+[![npm version][npm-version-img]][npm-version-url]
+![License](https://img.shields.io/npm/l/stepper-bootstrap)
 
 **Technology stack**:
 
@@ -35,7 +39,7 @@ General instructions on _how_ to contribute should be stated with a link to [CON
 ----
 
 ## Open source licensing info
-1. [MIT][license-url]
+[MIT][license-url]
 ----
 
 ## Credits and references
@@ -43,3 +47,9 @@ General instructions on _how_ to contribute should be stated with a link to [CON
 
 
 [license-url]: LICENSE
+[npm-img]: https://nodei.co/npm/stepper-bootstrap.png?downloads=true&downloadRank=true&stars=true
+[npm-url]: https://www.npmjs.com/package/stepper-bootstrap
+[npm-version-img]: https://badge.fury.io/js/stepper-bootstrap.svg
+[npm-version-url]: http://badge.fury.io/js/stepper-bootstrap
+[contribution-img]: https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
+[contribution-url]: https://github.com/dwyl/esta/issues
