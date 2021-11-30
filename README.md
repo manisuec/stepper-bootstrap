@@ -6,7 +6,7 @@ A Stepper component lib using React Bootstrap.
 
 [![contributions welcome][contribution-img]][contribution-url]
 [![npm version][npm-version-img]][npm-version-url]
-![License](https://img.shields.io/npm/l/stepper-bootstrap)
+![License](https://img.shields.io/github/license/manisuec/stepper-bootstrap)
 
 **Technology stack**:
 
