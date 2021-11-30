@@ -39,7 +39,7 @@ General instructions on _how_ to contribute should be stated with a link to [CON
 ----
 
 ## Open source licensing info
-1. [MIT][license-url]
+[MIT][license-url]
 ----
 
 ## Credits and references
