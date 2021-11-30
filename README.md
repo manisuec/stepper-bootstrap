@@ -16,14 +16,14 @@ Other things to include:
 
 ## Installation
 # npm
-npm install stepper-bootstrap --save
+`npm install stepper-bootstrap --save`
 
 # yarn
-yarn add stepper-bootstrap
+`yarn add stepper-bootstrap`
 ## Usage
 
 # Demo 
-npm run storybook
+`npm run storybook`
 
 Check the examples provided
 
