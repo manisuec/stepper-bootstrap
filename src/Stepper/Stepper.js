@@ -1,4 +1,10 @@
-import { Children, useState, forwardRef, cloneElement, isValidElement } from 'react';
+import {
+  Children,
+  useState,
+  forwardRef,
+  cloneElement,
+  isValidElement,
+} from 'react';
 import clsx from 'clsx';
 import { Card, Button } from 'react-bootstrap';
 
@@ -7,8 +13,8 @@ import useStepIndex from './useStepIndex';
 
 import '../assets/sass/main.scss';
 
-const StepperHeader = ({stepHeader, curIndex, totalSteps}) => {
-  if (isValidElement(stepHeader) ) {
+const StepperHeader = ({ stepHeader, curIndex, totalSteps }) => {
+  if (isValidElement(stepHeader)) {
     return stepHeader;
   } else {
     return (
@@ -20,9 +26,9 @@ const StepperHeader = ({stepHeader, curIndex, totalSteps}) => {
       </Card.Header>
     );
   }
-}
+};
 
-const Stepper = forwardRef(function Stepper(props, ref){
+const Stepper = forwardRef(function Stepper(props, ref) {
   const {
     activeStep = 0,
     children,
@@ -74,25 +80,33 @@ const Stepper = forwardRef(function Stepper(props, ref){
   return (
     <StepperContext.Provider value={{ activeStepIndex, setActiveStepIndex }}>
       <Card className={stepperClasses}>
-        {<StepperHeader stepHeader={stepHeader} curIndex={curIndex} totalSteps={childrenArray.length} />}
+        {
+          <StepperHeader
+            stepHeader={stepHeader}
+            curIndex={curIndex}
+            totalSteps={childrenArray.length}
+          />
+        }
         <Card.Body ref={ref} {...restProps} className={stepClasses}>
           {stepChildren}
         </Card.Body>
         <Card.Footer className="text-right">
           <div className="d-flex justify-content-between">
-            <Button 
-              variant="outline-primary" 
-              size="sm" 
-              onClick={previousHandler(curIndex)} 
-              disabled={curIndex === 0}>
-                {'Previous'}
+            <Button
+              variant="outline-primary"
+              size="sm"
+              onClick={previousHandler(curIndex)}
+              disabled={curIndex === 0}
+            >
+              {'Previous'}
             </Button>
-            <Button 
-              variant="outline-primary" 
-              size="sm" 
-              onClick={nextHandler(curIndex)} 
-              disabled={curIndex === childrenArray.length - 1}>
-                {'Next'}
+            <Button
+              variant="outline-primary"
+              size="sm"
+              onClick={nextHandler(curIndex)}
+              disabled={curIndex === childrenArray.length - 1}
+            >
+              {'Next'}
             </Button>
           </div>
         </Card.Footer>
