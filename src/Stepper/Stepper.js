@@ -4,6 +4,7 @@ import {
   forwardRef,
   cloneElement,
   isValidElement,
+  useEffect,
 } from 'react';
 import clsx from 'clsx';
 import { Card, Button } from 'react-bootstrap';
@@ -12,6 +13,39 @@ import { StepperContext } from './StepperContext';
 import useStepIndex from './useStepIndex';
 
 import '../assets/sass/main.scss';
+
+const StepFooter = ({
+  stepFooter,
+  curIndex,
+  totalSteps,
+  nextHandler,
+  previousHandler,
+}) => {
+  if (isValidElement(stepFooter)) {
+    return stepFooter;
+  } else {
+    return (
+      <div className="d-flex justify-content-between">
+        <Button
+          variant="outline-primary"
+          size="sm"
+          onClick={previousHandler(curIndex)}
+          disabled={curIndex === 0}
+        >
+          {'Previous'}
+        </Button>
+        <Button
+          variant="outline-primary"
+          size="sm"
+          onClick={nextHandler(curIndex)}
+          disabled={curIndex === totalSteps - 1}
+        >
+          {'Next'}
+        </Button>
+      </div>
+    );
+  }
+};
 
 const StepperHeader = ({ stepHeader, curIndex, totalSteps }) => {
   if (isValidElement(stepHeader)) {
@@ -41,6 +75,18 @@ const Stepper = forwardRef(function Stepper(props, ref) {
   const childrenArray = Children.toArray(children).filter(Boolean);
   const { activeStepIndex, setActiveStepIndex } = useStepIndex();
 
+  useEffect(() => {
+    if (activeStepIndex > 0 && curIndex !== activeStepIndex) {
+      setCurIndex(activeStepIndex);
+    } else if (
+      activeStepIndex === 0 &&
+      activeStep === 0 &&
+      curIndex > activeStepIndex
+    ) {
+      setCurIndex(activeStepIndex);
+    }
+  }, [activeStepIndex, curIndex]);
+
   const steps = childrenArray.map((step, index) => {
     return cloneElement(step, {
       index,
@@ -50,6 +96,7 @@ const Stepper = forwardRef(function Stepper(props, ref) {
   });
   const {
     stepHeader,
+    stepFooter,
     children: stepChildren,
     className: stepClassName,
   } = steps[curIndex].props;
@@ -90,24 +137,15 @@ const Stepper = forwardRef(function Stepper(props, ref) {
           {stepChildren}
         </Card.Body>
         <Card.Footer className="text-right">
-          <div className="d-flex justify-content-between">
-            <Button
-              variant="outline-primary"
-              size="sm"
-              onClick={previousHandler(curIndex)}
-              disabled={curIndex === 0}
-            >
-              {'Previous'}
-            </Button>
-            <Button
-              variant="outline-primary"
-              size="sm"
-              onClick={nextHandler(curIndex)}
-              disabled={curIndex === childrenArray.length - 1}
-            >
-              {'Next'}
-            </Button>
-          </div>
+          {
+            <StepFooter
+              stepFooter={stepFooter}
+              curIndex={curIndex}
+              nextHandler={nextHandler}
+              previousHandler={previousHandler}
+              totalSteps={childrenArray.length}
+            />
+          }
         </Card.Footer>
       </Card>
     </StepperContext.Provider>

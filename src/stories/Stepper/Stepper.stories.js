@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 import { storiesOf } from '@storybook/react';
+import { Button } from 'react-bootstrap';
+
 import Stepper from '../../Stepper/Stepper';
 import Step from '../../Stepper/Step';
 
@@ -113,6 +115,58 @@ const getStepWithStepperContext = index => {
   );
 };
 
+const CustomFooter = () => {
+  const { activeStepIndex, setActiveStepIndex } = useContext(StepperContext);
+
+  const previousHandler = index => e => {
+    e.preventDefault();
+    if (index > 0) {
+      const tempCurIndex = activeStepIndex - 1;
+
+      setActiveStepIndex(tempCurIndex);
+    }
+  };
+
+  const nextHandler = index => e => {
+    e.preventDefault();
+    if (index !== steps.length - 1) {
+      const tempCurIndex = activeStepIndex + 1;
+
+      setActiveStepIndex(tempCurIndex);
+    }
+  };
+
+  return (
+    <div className="d-flex justify-content-between">
+      <Button
+        variant="link"
+        size="sm"
+        onClick={previousHandler(activeStepIndex)}
+        disabled={activeStepIndex === 0}
+      >
+        {'Previous'}
+      </Button>
+      <span className="text-lowercase">{'Custom footer'}</span>
+      <Button
+        variant="link"
+        size="sm"
+        onClick={nextHandler(activeStepIndex)}
+        disabled={activeStepIndex === steps.length - 1}
+      >
+        {'Next'}
+      </Button>
+    </div>
+  );
+};
+
+const getStepWithCustomFooter = index => {
+  return (
+    <Step key={index} stepFooter={<CustomFooter />}>
+      <div>{`Step ${index + 1} body. Footer is a custom React element`}</div>
+    </Step>
+  );
+};
+
 let activeStep = 0;
 
 storiesOf('Stepper', Stepper)
@@ -152,5 +206,10 @@ storiesOf('Stepper', Stepper)
   .add('use of stepper context', () => (
     <Stepper activeStep={activeStep} className="container-md">
       {steps.map((step, index) => getStepWithStepperContext(index, step))}
+    </Stepper>
+  ))
+  .add('with custom footer', () => (
+    <Stepper activeStep={activeStep} className="container-md">
+      {steps.map((step, index) => getStepWithCustomFooter(index, step))}
     </Stepper>
   ));
