@@ -20,14 +20,14 @@ A Stepper component lib using React Bootstrap.
 <br />
 
 ## Installation
-# npm
+### npm
 `npm install stepper-bootstrap --save`
 
-# yarn
+### yarn
 `yarn add stepper-bootstrap`
 ## Usage
 
-# Demo 
+### Demo 
 `npm run storybook`
 
 Check the examples provided
