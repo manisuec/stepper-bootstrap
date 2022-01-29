@@ -38,7 +38,7 @@ or
 
 ## Getting involved
 
-General instructions on _how_ to contribute should be stated with a link to [CONTRIBUTING](CONTRIBUTING.md).
+General instructions on _how to contribute_ [CONTRIBUTING](CONTRIBUTING.md).
 
 ----
 
