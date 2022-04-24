@@ -1,3 +1,9 @@
+<!--
+  Title: Stepper Bootstrap
+  Description: A Stepper component lib using React Bootstrap
+  Author: manisuec
+  -->
+
 # Stepper Bootstrap
 
 A Stepper component lib using React Bootstrap.
@@ -34,7 +40,7 @@ Check the examples provided
 
 or 
 
-[Stepper Bootstrap](https://manisuec.github.io/stepper-bootstrap/)
+Check the storybook [Stepper Bootstrap](https://manisuec.github.io/stepper-bootstrap/)
 
 ![stepper](https://user-images.githubusercontent.com/6031883/155672490-42f55449-242a-423b-b5c7-d0a6e13ee8e0.gif)
 
