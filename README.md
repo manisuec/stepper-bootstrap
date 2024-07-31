@@ -54,7 +54,8 @@ General instructions on _how to contribute_ [CONTRIBUTING](CONTRIBUTING.md).
 ## Open source licensing info
 [MIT][license-url]
 
-
+## Tech Blog
+Read my blog at [Tech Insights: Personal Tech Blog](https://techinsights.manisuec.com
 
 [license-url]: LICENSE
 [npm-img]: https://nodei.co/npm/stepper-bootstrap.png?downloads=true&downloadRank=true&stars=true
